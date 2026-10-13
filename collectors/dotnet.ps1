@@ -1,0 +1,7 @@
+$runtimes=$null;$dotnet=Get-Command dotnet.exe -ErrorAction SilentlyContinue
+if($dotnet){$runtimes=(& $dotnet.Source --list-runtimes 2>&1|Out-String);if($LASTEXITCODE -ne 0){throw $runtimes}}else{$limitations+='INCOMPLETE: dotnet CLI absent; .NET Core/runtime inventory incomplete'}
+$framework=$null;if(Test-Path 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full'){$framework=(Get-ItemProperty 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full').Release}
+$modules=@();foreach($path in @("$env:ProgramFiles\IIS\Asp.Net Core Module\V2\aspnetcorev2.dll","$env:ProgramFiles\IIS\Asp.Net Core Module\aspnetcore.dll")){if(Test-Path -LiteralPath $path){$modules+=Get-Item -LiteralPath $path|Select-Object FullName,@{n='Version';e={$_.VersionInfo.FileVersion}}}}
+$bundles=@();foreach($key in @('HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*','HKLM:\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*')){$bundles+=@(Get-ItemProperty $key -ErrorAction SilentlyContinue|Where-Object {$_.DisplayName -match 'Hosting|ASP.NET Core'}|Select-Object DisplayName,DisplayVersion)}
+$data=@([pscustomobject]@{RuntimesRaw=$runtimes;FrameworkV4Release=$framework;IISASPNetCoreModules=$modules;HostingBundleRegistrations=$bundles})
+$limitations+='Runtime presence, IIS module file presence, and Hosting Bundle registrations are separate checks; no inference that IIS hosting is configured correctly'

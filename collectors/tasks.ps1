@@ -1,0 +1,1 @@
+$data=@(Get-ScheduledTask|ForEach-Object {$i=$_|Get-ScheduledTaskInfo;[pscustomobject]@{Name=$_.TaskName;Path=$_.TaskPath;State=[string]$_.State;LastRun=$i.LastRunTime;LastResult=$i.LastTaskResult;NextRun=$i.NextRunTime;Actions=@($_.Actions|Select-Object Execute,Arguments,WorkingDirectory)}})

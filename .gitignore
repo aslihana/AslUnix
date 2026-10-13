@@ -1,0 +1,7 @@
+/reports/
+/release/package/
+/aslunix.json
+/aslunix
+*.test
+*.pcap
+*.pcapng

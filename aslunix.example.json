@@ -1,0 +1,18 @@
+{
+  "disk_warning_free_percent": 20,
+  "disk_critical_free_percent": 10,
+  "disk_warning_free_gb": 10,
+  "disk_critical_free_gb": 5,
+  "cpu_warning_percent": 85,
+  "cpu_critical_percent": 95,
+  "memory_warning_percent": 85,
+  "memory_critical_percent": 95,
+  "required_services": [],
+  "approved_admin_sids": [],
+  "timeout_seconds": 30,
+  "sample_seconds": 1,
+  "watch_seconds": 30,
+  "report_retention_days": 30,
+  "report_directory": "reports",
+  "tools": {}
+}

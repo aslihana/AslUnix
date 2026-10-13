@@ -1,0 +1,2 @@
+$data=@([pscustomobject]@{Computer=Get-CimInstance Win32_ComputerSystem|Select-Object Manufacturer,Model,TotalPhysicalMemory,NumberOfLogicalProcessors;BIOS=Get-CimInstance Win32_BIOS|Select-Object Manufacturer,SMBIOSBIOSVersion,SerialNumber;CPU=@(Get-CimInstance Win32_Processor|Select-Object Name,NumberOfCores,NumberOfLogicalProcessors);Disks=@(Get-CimInstance Win32_DiskDrive|Select-Object Model,SerialNumber,Size,InterfaceType,Status)})
+$limitations+='CIM disk status does not establish RAID or physical hardware health'

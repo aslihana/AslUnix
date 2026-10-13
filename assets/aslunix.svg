@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <title>AslUnix</title>
+  <rect x="8" y="8" width="240" height="240" rx="52" fill="#101b29"/>
+  <g transform="rotate(90 128 128)">
+  <path d="M55 181 107 69h28l53 112h-31l-36-81-36 81Z" fill="#54e0b5"/>
+  <path d="M94 140h54l10 22H84Z" fill="#f2f7fb"/>
+  </g>
+  <rect x="150" y="194" width="46" height="14" rx="4" fill="#ffb65c"/>
+</svg>
